@@ -30,7 +30,7 @@ function getUrlParameter(name) {
 
 // Get the URL parameter and update the link
 var urlParam = getUrlParameter('url');
-document.getElementById('link').href = urlParam;
+document.getElementById('link').href = 'https://' + urlParam;
 document.getElementById('link').style.display = 'none';
 
 // Countdown
