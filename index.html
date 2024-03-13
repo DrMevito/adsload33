@@ -14,6 +14,7 @@
     margin-top: 20px;
   }
   #link2 {
+    display: none;
     margin-top: 20px;
   }
 </style>
@@ -26,7 +27,7 @@
 <div>
   <div id="countdown2"></div>
   <button id="button2">Start Countdown 2</button>
-  <a href="#" id="link2">Your link</a>
+  <a href="#" id="link2">Visit Example Website</a>
 </div>
 
 <script>
@@ -41,6 +42,7 @@ function getUrlParameter(name) {
 // Get the URL parameter and update the link
 var urlParam = getUrlParameter('url');
 document.getElementById('link2').href = urlParam;
+document.getElementById('link2').style.display = 'block';
 
 // Countdown 1 - Starts automatically after page load
 var countdownElement1 = document.getElementById('countdown1');
