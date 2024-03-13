@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+  #countdown1, #countdown2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  #button1, #button2 {
+    display: none;
+    margin-top: 20px;
+  }
+  #link2 {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div>
+  <div id="countdown1"></div>
+  <button id="button1">Start Countdown 1</button>
+</div>
+<div>
+  <div id="countdown2"></div>
+  <button id="button2">Start Countdown 2</button>
+  <a href="#" id="link2">Your link</a>
+</div>
+
+<script>
+// Function to extract URL parameter from query string
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Get the URL parameter and update the link
+var urlParam = getUrlParameter('url');
+document.getElementById('link2').href = urlParam;
+
+// Countdown 1 - Starts automatically after page load
+var countdownElement1 = document.getElementById('countdown1');
+var buttonElement1 = document.getElementById('button1');
+var seconds1 = 10;
+
+function updateCountdown1() {
+  countdownElement1.textContent = 'Countdown 1: ' + seconds1 + 's';
+  seconds1--;
+
+  if (seconds1 < 0) {
+    clearInterval(intervalId1);
+    buttonElement1.style.display = 'block';
+    countdownElement1.textContent = 'Countdown 1 Complete';
+  }
+}
+
+var intervalId1 = setInterval(updateCountdown1, 1000);
+
+// Countdown 2 - Starts after tapping on button 2
+document.getElementById('button2').addEventListener('click', function() {
+  var countdownElement2 = document.getElementById('countdown2');
+  var linkElement2 = document.getElementById('link2');
+  var buttonElement2 = document.getElementById('button2');
+
+  var seconds2 = 10;
+
+  function updateCountdown2() {
+    countdownElement2.textContent = 'Countdown 2: ' + seconds2 + 's';
+    seconds2--;
+
+    if (seconds2 < 0) {
+      clearInterval(intervalId2);
+      linkElement2.style.display = 'block';
+      countdownElement2.textContent = 'Countdown 2 Complete';
+      buttonElement2.style.display = 'none';
+    }
+  }
+
+  var intervalId2 = setInterval(updateCountdown2, 1000);
+});
+</script>
+</body>
+</html>
